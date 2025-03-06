@@ -1,12 +1,32 @@
-# React + Vite
+# Dự án Khóa Học Online
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Giới thiệu
+Dự án **Khóa Học Online** là một nền tảng học tập trực tuyến, cung cấp các khóa học thuộc nhiều lĩnh vực khác nhau. Người dùng có thể đăng ký, học và thanh toán trực tuyến.
 
-Currently, two official plugins are available:
+## Chức năng chính
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Người dùng (Học viên)
+- **Đăng ký / Đăng nhập**: Sử dụng tài khoản để truy cập vào nền tảng.
+- **Xem danh sách khóa học**: Tìm kiếm và xem chi tiết khóa học.
+- **Đăng ký khóa học**: Mua khóa học và thanh toán trực tuyến.
+- **Học trực tuyến**: Xem video bài giảng, tham gia bài kiểm tra.
+- **Đánh giá & Bình luận**: Đánh giá và để lại nhận xét về khóa học.
 
-## Expanding the ESLint configuration
+### 2. Giảng viên
+- **Đăng ký / Đăng nhập**: Quản lý tài khoản giảng viên.
+- **Tạo & Quản lý khóa học**: Thêm, sửa, xóa khóa học.
+- **Quản lý nội dung khóa học**: Upload video, bài kiểm tra.
+- **Theo dõi học viên**: Xem danh sách học viên đăng ký.
+- **Trả lời bình luận**: Tương tác với học viên.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 3. Quản trị viên (Admin)
+- **Quản lý người dùng**: Xem danh sách, khóa tài khoản.
+- **Duyệt khóa học**: Kiểm duyệt nội dung trước khi hiển thị.
+- **Quản lý danh mục**: Tạo và cập nhật danh mục khóa học.
+- **Thống kê & Báo cáo**: Theo dõi doanh thu, số lượng học viên.
+
+## Công nghệ sử dụng
+- **Frontend**: React + Vite + Tailwind CSS
+- **Backend**: Spring Boot + SQL Server
+- **Thanh toán**: Tích hợp cổng thanh toán online
+- **Quản lý trạng thái**: React Context API / Redux
