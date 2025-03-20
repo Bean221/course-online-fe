@@ -1,24 +1,38 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import bannerImg from '../../assets/banner.png'
-
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import bannerImg from '../../assets/banner.png';
+import useInView from '../../hooks/useInView';
 
 const Banner = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleScrollToForm = () => {
-    // Tìm element có id="dang-ky-ngay"
-    const formSection = document.getElementById('dang-ky-ngay')
+    const formSection = document.getElementById('dang-ky-tu-van');
     if (formSection) {
-      // Cuộn mượt đến form
-      formSection.scrollIntoView({ behavior: 'smooth' })
+      formSection.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  };
+
+  // Dùng hook IntersectionObserver
+  const [bannerRef, isBannerVisible] = useInView({
+    threshold: 0.2, // 20% phần tử xuất hiện thì kích hoạt
+  });
 
   return (
-    <section className="pt-16 bg-[#E8F8FA] py-10 px-4">
+    <section
+      ref={bannerRef}
+      className={`
+        pt-16 bg-[#E8F8FA] py-10 px-4 
+        transition-all duration-700
+        [transition-timing-function:cubic-bezier(0.34,_1.56,_0.64,_1)]
+        ${isBannerVisible 
+          ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
+          : 'opacity-0 translate-y-6 scale-95 rotate-3'
+        }
+      `}
+    >
       <div className="container mx-auto flex flex-col md:flex-row items-center">
-        {/* ... Cột trái */}
+        {/* Cột trái */}
         <div className="md:w-1/2 md:pr-8">
           <h1 className="text-3xl md:text-4xl font-bold text-[#274C4F] mb-2">
             Trung tâm Anh Ngữ
@@ -27,10 +41,18 @@ const Banner = () => {
             BeanLearn
           </h1>
           <ul className="space-y-2 mb-6 pl-4">
-            <li className="list-disc text-gray-700">Mô hình học tiên phong University Lecture</li>
-            <li className="list-disc text-gray-700">Nâng band cấp tốc chỉ sau 90 giờ học</li>
-            <li className="list-disc text-gray-700">Chuyên đào tạo IELTS / SAT / Tiếng Anh Trẻ Em</li>
-            <li className="list-disc text-gray-700">Cam kết chất lượng đầu ra</li>
+            <li className="list-disc text-gray-700">
+              Mô hình học tiên phong University Lecture
+            </li>
+            <li className="list-disc text-gray-700">
+              Nâng band cấp tốc chỉ sau 90 giờ học
+            </li>
+            <li className="list-disc text-gray-700">
+              Chuyên đào tạo IELTS / SAT / Tiếng Anh Trẻ Em
+            </li>
+            <li className="list-disc text-gray-700">
+              Cam kết chất lượng đầu ra
+            </li>
           </ul>
 
           <div className="flex space-x-4">
@@ -55,11 +77,11 @@ const Banner = () => {
 
         {/* Cột phải: Hình ảnh */}
         <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center">
-        <img src={bannerImg} alt="Banner" />
+          <img src={bannerImg} alt="Banner" />
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

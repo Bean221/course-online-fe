@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { FiChevronDown, FiUserPlus } from 'react-icons/fi'
-import logoImg from '../../assets/logo.png'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FiChevronDown, FiUserPlus } from "react-icons/fi";
+import logoImg from "../../assets/logo.png";
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
-        setIsScrolled(true)
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
@@ -25,19 +25,23 @@ const Header = () => {
         fixed top-0 left-0 w-full z-50 
         flex items-center transition-colors duration-300
         h-16 
-        ${isScrolled 
-          ? 'bg-white shadow' 
-          : 'bg-transparent shadow-none'}
+        ${isScrolled ? "bg-white shadow" : "bg-transparent shadow-none"}
       `}
     >
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
         {/* Logo (chỉ ảnh, to hơn) */}
-        <Link to="/" className="flex items-center">
+        <Link
+          to="/"
+          className="flex items-center"
+          onClick={() => {
+            // Điều hướng về trang chủ
+            window.location.href = "/";
+          }}
+        >
           <img
             src={logoImg}
             alt="BeanLearn Logo"
-            className="h-20 w-auto object-contain" 
-            // h-20 = 80px. Tùy chỉnh (h-16 = 64px, h-24 = 96px, v.v.)
+            className="h-20 w-auto object-contain"
           />
         </Link>
 
@@ -94,7 +98,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link
-                    to="/courses/kids-english"
+                    to="/courses/kids"
                     className="
                       block px-4 py-2 text-[#274c4f] hover:text-red-600 
                       hover:bg-gray-100 transition-colors duration-200
@@ -285,7 +289,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

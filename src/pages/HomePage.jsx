@@ -16,9 +16,6 @@ import StudentTestimonials from '../components/Home/StudentTestimonials'
 import TeacherTeam from '../components/Home/TeacherTeam'
 import LearningEnvironment from '../components/Home/LearningEnvironment'
 import PressMention from '../components/Home/PressMention'
-import IeltsRoadmap from '../components/Home/IeltsRoadmap'
-import BeanLearnReputation from '../components/Home/BeanLearnReputation'
-
 const HomePage = () => {
   return (
     <div>
@@ -34,8 +31,6 @@ const HomePage = () => {
       <TeacherTeam />
       <LearningEnvironment />
       <PressMention />
-      <IeltsRoadmap />
-      <BeanLearnReputation />
       <Footer />
     </div>
   )

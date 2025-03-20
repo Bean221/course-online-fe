@@ -6,89 +6,125 @@ import diff4 from '../../assets/diff4.jpg';
 import diff5 from '../../assets/diff5.jpg';
 import diff6 from '../../assets/diff6.jpg';
 
-const data = [
-  { imageSrc: diff1, title: 'Điểm độc đáo 1', bulletPoints: ['Tính năng A', 'Tính năng B', 'Tính năng C'] },
-  { imageSrc: diff2, title: 'Điểm độc đáo 2', bulletPoints: ['Tính năng D', 'Tính năng E', 'Tính năng F'] },
-  { imageSrc: diff3, title: 'Điểm độc đáo 3', bulletPoints: ['Tính năng G', 'Tính năng H', 'Tính năng I'] },
-  { imageSrc: diff4, title: 'Điểm độc đáo 4', bulletPoints: ['Tính năng J', 'Tính năng K', 'Tính năng L'] },
-  { imageSrc: diff5, title: 'Điểm độc đáo 5', bulletPoints: ['Tính năng M', 'Tính năng N', 'Tính năng O'] },
-  { imageSrc: diff6, title: 'Điểm độc đáo 6', bulletPoints: ['Tính năng P', 'Tính năng Q', 'Tính năng R'] },
-];
-
-const UniquePoints = () => {
-  const [flippedIndex, setFlippedIndex] = useState(null);
-
-  const handleClick = (index) => {
-    setFlippedIndex(prev => (prev === index ? null : index));
-  };
-
+const DifferencesTheForum = () => {
   return (
-    <div className="bg-[#E8F8FA] py-10 px-8">
-      {/* Nội dung văn bản */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold mb-6">Mô hình học độc quyền University Lecture</h2>
-        
-        <div className="space-y-4 mb-8">
-          <p className="text-lg">Mô hình học nâng band hiệu quả, vận dụng kiến thức một cách “thực chiến”</p>
-          <p className="text-lg">60 tiết “Lecture” tự chọn khác nhau bên cạnh các buổi học cố định</p>
-          <p className="text-lg">Đa dạng chủ đề, hỗ trợ định hướng và phát triển khả năng ngôn ngữ</p>
-          <p className="text-lg">Miễn phí 100% và không giới hạn cho toàn bộ học viên</p>
-        </div>
+    <div className="bg-[#F3FBFD] py-12 px-4 md:px-8">
+      {/* Tiêu đề chính */}
+      <h2 class="text-3xl md:text-4xl font-bold text-[#274C4F] text-center mb-2">
+        Điểm khác biệt của <span className="text-[#E53935]">BeanLearn</span>
+      </h2>
 
-        <h3 className="text-xl font-semibold mb-4">Khóa học trực tuyến bổ trợ chất lượng cao</h3>
-        <div className="space-y-4 mb-8">
-          <p className="text-lg">Tất cả khóa học đều đi kèm Online Courses bổ trợ miễn phí 100%</p>
-          <p className="text-lg">Video bài giảng học thuật biên soạn bởi đội ngũ chuyên gia</p>
-          <p className="text-lg">Bổ trợ kiến thức, giúp học viên rèn luyện mọi lúc mọi nơi</p>
+      {/* Row 1 - University Lecture */}
+      <div className="flex flex-col-reverse md:flex-row items-center gap-8 mb-16">
+        {/* Phần chữ */}
+        <div className="md:w-1/2 space-y-4">
+          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+            Mô hình học độc quyền University Lecture
+          </h3>
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">
+            <li>Mô hình học nâng band hiệu quả, vận dụng kiến thức một cách “thực chiến”</li>
+            <li>60 tiết “Lecture” tự chọn khác nhau bên cạnh các buổi học cố định</li>
+            <li>Đa dạng chủ đề, hỗ trợ định hướng và phát triển khả năng ngôn ngữ của bản thân</li>
+            <li>Miễn phí 100% và không giới hạn cho toàn bộ học viên</li>
+          </ul>
         </div>
-
-        <h3 className="text-xl font-semibold mb-4">Giáo trình học thuật chuyên sâu</h3>
-        <div className="space-y-4">
-          <p className="text-lg">Giáo trình giảng dạy được thiết kế riêng biệt theo lộ trình</p>
-          <p className="text-lg">Kết hợp chương trình đào tạo từ các nhà xuất bản hàng đầu</p>
-          <p className="text-lg">Đa dạng chủ đề, dạng bài có độ khó nâng dần</p>
+        {/* Phần carousel */}
+        <div className="md:w-1/2">
+          <SimpleCarousel images={[diff1, diff2, diff3]} />
         </div>
       </div>
 
-      {/* Hình ảnh */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            imageSrc={item.imageSrc}
-            title={item.title}
-            bulletPoints={item.bulletPoints}
-            flipped={index === flippedIndex}
-            anyFlipped={flippedIndex !== null}
-            onClick={() => handleClick(index)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Card = ({ imageSrc, title, bulletPoints, flipped, anyFlipped, onClick }) => {
-  const cardClasses = `relative w-52 h-72 perspective-1000 cursor-pointer transition-opacity duration-300 shadow-md hover:scale-105 ${!flipped && anyFlipped ? 'opacity-50' : ''}`;
-  const innerClasses = `absolute w-full h-full transform-style-preserve-3d transition-transform duration-600 ${flipped ? 'rotate-y-180' : ''}`;
-
-  return (
-    <div className={cardClasses} onClick={onClick}>
-      <div className={innerClasses}>
-        <div className="absolute w-full h-full backface-hidden flex items-center justify-center overflow-hidden">
-          <img src={imageSrc} alt={title} className="w-full h-full object-cover" />
+      {/* Row 2 - Khóa học trực tuyến */}
+      <div className="flex flex-col md:flex-row items-center gap-8 mb-16">
+        {/* Phần carousel */}
+        <div className="md:w-1/2">
+          <SimpleCarousel images={[diff4, diff5, diff6]} />
         </div>
-        <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-gray-100 p-5 text-center flex flex-col items-center justify-center">
-          <h3 className="text-xl font-bold mb-4">{title}</h3>
-          <ul className="list-none p-0">
-            {bulletPoints.map((point, idx) => (
-              <li key={idx} className="mb-2">{point}</li>
-            ))}
+        {/* Phần chữ */}
+        <div className="md:w-1/2 space-y-4">
+          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+            Khóa học trực tuyến bổ trợ chất lượng cao
+          </h3>
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">
+            <li>Tất cả khóa học đều đi kèm Online Courses bổ trợ miễn phí 100%</li>
+            <li>Video bài giảng học thuật biên soạn bởi đội ngũ chuyên gia BeanLearn</li>
+            <li>Bổ trợ kiến thức, giúp học viên rèn luyện mọi lúc mọi nơi</li>
           </ul>
         </div>
       </div>
+
+      {/* Row 3 - Giáo trình học thuật */}
+      <div className="flex flex-col-reverse md:flex-row items-center gap-8">
+        {/* Phần chữ */}
+        <div className="md:w-1/2 space-y-4">
+          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+            Giáo trình học thuật chuyên sâu riêng biệt
+          </h3>
+          <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">
+            <li>Giáo trình giảng dạy được thiết kế riêng biệt theo đúng lộ trình</li>
+            <li>Kết hợp các chương trình đào tạo được nghiên cứu chuyên sâu từ các nhà xuất bản hàng đầu về ngôn ngữ</li>
+            <li>Đa dạng chủ đề, dạng bài có độ khó nâng dần, phù hợp với trình độ học viên</li>
+          </ul>
+        </div>
+        {/* Phần carousel */}
+        <div className="md:w-1/2">
+          <SimpleCarousel images={[diff1, diff5, diff6]} />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default UniquePoints;
+// Carousel đơn giản (bạn có thể thay bằng bất kỳ thư viện carousel nào)
+const SimpleCarousel = ({ images }) => {
+  const [current, setCurrent] = useState(0);
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden rounded-lg shadow-lg">
+      <div
+        className="flex transition-transform duration-500 ease-in-out h-full"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {images.map((imgSrc, idx) => (
+          <div key={idx} className="min-w-full h-full flex-shrink-0">
+            <img
+              src={imgSrc}
+              alt={`Slide ${idx + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Nút điều hướng */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-3 transform -translate-y-1/2 
+                       bg-white text-gray-800 rounded-full p-2 shadow hover:bg-gray-100"
+          >
+            ❮
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-3 transform -translate-y-1/2 
+                       bg-white text-gray-800 rounded-full p-2 shadow hover:bg-gray-100"
+          >
+            ❯
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default DifferencesTheForum;
