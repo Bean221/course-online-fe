@@ -174,6 +174,17 @@ const Header = () => {
                     Thi Thử IELTS Reading Online
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/mock-test/RegisterIELTS"
+                    className="
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      hover:bg-gray-100 transition-colors duration-200
+                    "
+                  >
+                    Đăng Ký Thi IELTS
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

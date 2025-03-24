@@ -25,7 +25,7 @@ const Footer = () => {
             {/* Social icons */}
             <div className="flex space-x-4">
               <a
-                href="https://www.facebook.com/theforum"
+                href="https://www.facebook.com/mtuan221"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#274c4f] hover:text-red-600 transition-colors duration-300"
@@ -33,7 +33,7 @@ const Footer = () => {
                 <FaFacebookF size={24} />
               </a>
               <a
-                href="https://www.youtube.com/theforum"
+                href="https://www.youtube.com/@lournbean22"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#274c4f] hover:text-red-600 transition-colors duration-300"
@@ -41,7 +41,7 @@ const Footer = () => {
                 <FaYoutube size={24} />
               </a>
               <a
-                href="https://www.tiktok.com/@theforum"
+                href="https://www.tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#274c4f] hover:text-red-600 transition-colors duration-300"
@@ -68,7 +68,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/register-ielts" className="hover:text-red-600 transition-colors duration-300">
+                <Link to="/mock-test/RegisterIELTS" className="hover:text-red-600 transition-colors duration-300">
                   Đăng ký thi IELTS
                 </Link>
               </li>

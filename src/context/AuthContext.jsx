@@ -1,31 +1,37 @@
-import { createContext, useState } from 'react';
-import { registerUser, fetchUserByEmail } from '../services/api'; // Đảm bảo import đúng
+import React, { createContext, useState, useContext } from 'react';
 
-export const AuthContext = createContext();
+// Tạo context
+const AuthContext = createContext(null);
 
-export const AuthProvider = ({ children }) => {
+// Custom hook để dùng AuthContext
+export function useAuth() {
+  return useContext(AuthContext);
+}
+
+export function AuthProvider({ children }) {
+  // user = null => chưa đăng nhập
+  // user = { name, email, ... } => đã đăng nhập
   const [user, setUser] = useState(null);
 
-  const login = async (email, password) => {
-    const foundUser = await fetchUserByEmail(email, password);
-    if (foundUser) {
-      setUser(foundUser);
-      return foundUser;
-    }
-    throw new Error('Invalid email or password');
+  // Hàm login giả lập
+  const login = (userData) => {
+    // Lưu userData vào state, có thể lưu localStorage, v.v.
+    setUser(userData);
   };
 
-  const logout = () => setUser(null);
-
-  const register = async (userData) => {
-    const newUser = await registerUser(userData);
-    setUser(newUser);
-    return newUser;
+  // Hàm logout
+  const logout = () => {
+    setUser(null);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  // Hàm register, forgotPassword... tuỳ ý
+  // Ở ví dụ này chỉ login/logout cho đơn giản
+
+  const value = {
+    user,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+}
