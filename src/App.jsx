@@ -19,10 +19,14 @@ import Writing from "./pages/KienThucIelts/Writing";
 import Listening from "./pages/KienThucIelts/Listening";
 import Reading from "./pages/KienThucIelts/Reading";
 import SatMath from "./pages/KienThucIelts/SatMath";
-import Register from "./components/user/Register";
-import Login from "./components/user/Login";
 import About from "./pages/About";
-import ForgotPassword from "./components/user/ForgotPassword";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./pages/Dashboard";
+
+
 
 
 
@@ -43,6 +47,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
       
       {/* 4 kỹ năng con */}
       <Route path="/mock-test" element={<MockTest />} />
@@ -62,6 +67,8 @@ function App() {
       <Route path="/ielts-knowledge/listening" element={<Listening />} />
       <Route path="/ielts-knowledge/reading" element={<Reading />} />
       <Route path="/ielts-knowledge/sat" element={<SatMath />} />
+      {/* Trang Dashboard */}
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
