@@ -1,13 +1,12 @@
 import React from 'react';
 import ResetPasswordForm from '../components/ResetPasswordForm';
 
-const ResetPassword = () => {
+const ResetPasswordPage = () => {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Reset Password</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <ResetPasswordForm />
     </div>
   );
 };
 
-export default ResetPassword;
+export default ResetPasswordPage;

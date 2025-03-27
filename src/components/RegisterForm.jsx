@@ -1,61 +1,77 @@
 import React, { useState } from 'react';
+import { register } from '../services/apiService';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../services/authService';
-import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [phone, setPhone] = useState('');
+  const initialState = { full_name: '', phone: '', email: '', password: '', role: 'student' };
+  const [formData, setFormData] = useState(initialState);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register({ full_name: fullName, email, password, phone });
-      toast.success('Đăng ký thành công! Vui lòng đăng nhập.');
+      await register(formData);
       navigate('/login');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Đăng ký thất bại');
+    } catch {
+      setError('Registration failed, please check your input.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <input
-        type="text"
-        placeholder="Họ và tên"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        className="block w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="block w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="password"
-        placeholder="Mật khẩu"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="block w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <input
-        type="text"
-        placeholder="Số điện thoại"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        className="block w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-      />
-      <button type="submit" className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-        Đăng ký
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 border rounded shadow">
+      <h2 className="text-xl font-bold mb-4">Register</h2>
+      {error && <div className="text-red-500 mb-2">{error}</div>}
+      <div className="mb-4">
+        <label className="block mb-1">Full Name</label>
+        <input
+          type="text"
+          name="full_name"
+          value={formData.full_name}
+          onChange={handleChange}
+          className="border p-2 w-full"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Phone</label>
+        <input
+          type="text"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          className="border p-2 w-full"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          className="border p-2 w-full"
+          required
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          className="border p-2 w-full"
+          required
+        />
+      </div>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        Register
       </button>
     </form>
   );

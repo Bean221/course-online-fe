@@ -1,37 +1,45 @@
 import React, { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { resetPassword } from '../services/authService';
-import { toast } from 'react-toastify';
+import { resetPassword } from '../services/apiService';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 const ResetPasswordForm = () => {
-  const [newPassword, setNewPassword] = useState('');
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
+  const [newPassword, setNewPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await resetPassword({ token, new_password: newPassword });
-      toast.success('Đặt lại mật khẩu thành công! Vui lòng đăng nhập.');
-      navigate('/login');
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Có lỗi xảy ra');
+      await resetPassword({ token, newPassword });
+      setMessage('Password reset successful. Redirecting to login...');
+      setTimeout(() => navigate('/login'), 3000);
+    } catch (err) {
+      console.error(err);
+      setError('Reset password failed. Please try again.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-      <input
-        type="password"
-        placeholder="Mật khẩu mới"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-        className="block w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500"
-        required
-      />
-      <button type="submit" className="w-full p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-        Đặt lại mật khẩu
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 border rounded shadow">
+      <h2 className="text-xl font-bold mb-4">Reset Password</h2>
+      {message && <div className="text-green-500 mb-2">{message}</div>}
+      {error && <div className="text-red-500 mb-2">{error}</div>}
+      <div className="mb-4">
+        <label className="block mb-1">New Password</label>
+        <input
+          type="password"
+          name="newPassword"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+          className="border p-2 w-full"
+          required
+        />
+      </div>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
+        Reset Password
       </button>
     </form>
   );

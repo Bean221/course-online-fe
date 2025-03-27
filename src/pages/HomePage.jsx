@@ -16,6 +16,7 @@ import StudentTestimonials from '../components/Home/StudentTestimonials'
 import TeacherTeam from '../components/Home/TeacherTeam'
 import LearningEnvironment from '../components/Home/LearningEnvironment'
 import PressMention from '../components/Home/PressMention'
+
 const HomePage = () => {
   return (
     <div>

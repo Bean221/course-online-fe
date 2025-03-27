@@ -1,23 +1,24 @@
 import React from 'react';
+import { logout } from '../services/apiService';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const LogoutButton = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    toast.success('Đăng xuất thành công!');
     navigate('/login');
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="p-2 bg-red-600 text-white rounded-md hover:bg-red-700"
-    >
-      Đăng xuất
+    <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded">
+      Logout
     </button>
   );
 };
