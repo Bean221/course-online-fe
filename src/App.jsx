@@ -25,10 +25,7 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
-
-
-
-
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -42,13 +39,13 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
       {/* Trang Về BeanLearn */}
       <Route path="/about" element={<About />} />
-      
+
       {/* Trang đăng ký */}
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password/:token" element={<ResetPassword />} />
-      
+
       {/* 4 kỹ năng con */}
       <Route path="/mock-test" element={<MockTest />} />
       <Route path="/mock-test/speaking" element={<SpeakingTest />} />
@@ -69,6 +66,8 @@ function App() {
       <Route path="/ielts-knowledge/sat" element={<SatMath />} />
       {/* Trang Dashboard */}
       <Route path="/dashboard" element={<Dashboard />} />
+      {/* Trang Cá Nhân */}
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }

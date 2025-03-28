@@ -10,7 +10,7 @@ const DifferencesTheForum = () => {
   return (
     <div className="bg-[#F3FBFD] py-12 px-4 md:px-8">
       {/* Tiêu đề chính */}
-      <h2 class="text-3xl md:text-4xl font-bold text-[#274C4F] text-center mb-2">
+      <h2 className="text-3xl md:text-4xl font-bold text-[#274C4F] text-center mb-2">
         Điểm khác biệt của <span className="text-[#E53935]">BeanLearn</span>
       </h2>
 
@@ -18,7 +18,7 @@ const DifferencesTheForum = () => {
       <div className="flex flex-col-reverse md:flex-row items-center gap-8 mb-16">
         {/* Phần chữ */}
         <div className="md:w-1/2 space-y-4">
-          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
             Mô hình học độc quyền University Lecture
           </h3>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">
@@ -42,7 +42,7 @@ const DifferencesTheForum = () => {
         </div>
         {/* Phần chữ */}
         <div className="md:w-1/2 space-y-4">
-          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
             Khóa học trực tuyến bổ trợ chất lượng cao
           </h3>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">
@@ -57,7 +57,7 @@ const DifferencesTheForum = () => {
       <div className="flex flex-col-reverse md:flex-row items-center gap-8">
         {/* Phần chữ */}
         <div className="md:w-1/2 space-y-4">
-          <h3 class="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-[#115560] text-center mb-4">
             Giáo trình học thuật chuyên sâu riêng biệt
           </h3>
           <ul className="list-disc pl-5 space-y-2 text-gray-700 text-base md:text-lg">

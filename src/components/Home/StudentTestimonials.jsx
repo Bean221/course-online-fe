@@ -48,7 +48,7 @@ function TestimonialCarousel() {
 
   return (
     <section className="py-10 px-4 bg-[#ECF5FF]">
-      <h2 class="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
+      <h2 className="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
         Học viên nói gì về <span className="text-red-500">BeanLearn?</span>
       </h2>
       <p className="text-center text-gray-600 mb-6">

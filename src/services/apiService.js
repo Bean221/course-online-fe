@@ -9,6 +9,12 @@ const api = axios.create({
 export const login = async (credentials) => {
   try {
     const response = await api.post('/auth/login', credentials);
+    // Giả sử API trả về token và thông tin user
+    const { token, user } = response.data;
+
+    // Lưu token và tên người dùng vào localStorage
+    localStorage.setItem('token', token);
+    localStorage.setItem('userName', user.full_name);
     return response.data;
   } catch (error) {
     console.error('Login error:', error.response || error);

@@ -7,7 +7,7 @@ const BeanStory = () => {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center">
         {/* Khối bên trái: Tiêu đề + Chỉ số */}
         <div className="md:w-1/2 md:pr-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-[#274C4F] mb-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#274C4F] mb-2">
             Câu chuyện của <span className="text-red-600">BeanLearn</span>
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-center md:text-left">

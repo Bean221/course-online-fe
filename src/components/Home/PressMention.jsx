@@ -56,7 +56,7 @@ function PressMention() {
   return (
     // Ở đây, thay pb-0 thành pb-6 để có khoảng cách với footer
     <section className="pt-10 pb-6 px-4 bg-white">
-      <h2 class="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
+      <h2 className="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
         Báo chí nói về chúng tôi
       </h2>
 

@@ -1,7 +1,8 @@
 import React from 'react'
 
 // layout 
-import Header from '../components/Layout/Header'
+
+import Header from '../components/layout/Header'
 import Footer from '../components/Layout/Footer'
 
 // Import các section

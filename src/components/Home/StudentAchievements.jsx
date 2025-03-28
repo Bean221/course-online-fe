@@ -48,7 +48,7 @@ function MeetStudents() {
 
   return (
     <section className="py-10 px-4 bg-white">
-      <h2 class="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
+      <h2 className="text-center text-3xl md:text-4xl font-bold text-[#115560] mb-6">
         Gặp gỡ học viên <span className="text-[#E53935]">BeanLearn</span>
       </h2>
 

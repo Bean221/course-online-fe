@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FiChevronDown, FiUserPlus } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { FiChevronDown, FiUserPlus, FiUser } from "react-icons/fi";
 import logoImg from "../../assets/logo.png";
+import Avatar from "../../assets/avt.png";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  // Thêm state đăng nhập, mặc định là false (chưa đăng nhập)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // State hiển thị menu dropdown cho user
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [userName, setUserName] = useState(""); // Lưu tên người dùng
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +26,30 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Kiểm tra token trong localStorage khi component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedName = localStorage.getItem("userName");
+    if (token) {
+      setIsLoggedIn(true);
+      if (storedName) {
+        setUserName(storedName);
+      }
+    } else {
+      setIsLoggedIn(false);
+      setUserName("");
+    }
+  }, []);
+
+  // Hàm xử lý đăng xuất
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    setIsLoggedIn(false);
+    setMenuOpen(false);
+    navigate("/");
+  };
 
   return (
     <header
@@ -276,27 +308,72 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* Đăng ký / Đăng nhập */}
+        {/* Phần dưới là code của bạn hiện đang hiển thị Đăng ký / Đăng nhập */}
         <div className="flex items-center space-x-4">
-          <Link
-            to="/register"
-            className="
-              flex items-center bg-red-500 text-white px-4 py-2 rounded-md 
-              hover:bg-red-600 hover:scale-105 transform transition-transform duration-300
-            "
-          >
-            <FiUserPlus className="mr-2" />
-            Đăng ký
-          </Link>
-          <Link
-            to="/login"
-            className="
-              text-[#274c4f] hover:text-red-600 hover:scale-105 
-              transform transition-transform duration-300
-            "
-          >
-            Đăng nhập
-          </Link>
+          {isLoggedIn ? (
+            // Nếu đã đăng nhập, thay thế bằng avatar và menu của user
+            <div className="relative">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="flex items-center space-x-2 focus:outline-none"
+              >
+                <img
+                  src={Avatar}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full"
+                />
+                <span className="hidden sm:inline-block text-[#274c4f]">
+                  {userName || "User"}
+                </span>
+                <FiChevronDown className="text-[#274c4f]" />
+              </button>
+              {menuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-md">
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    Thông tin cá nhân
+                  </Link>
+                  <Link
+                    to="/history"
+                    className="block px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    Lịch sử thi thử
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
+                  >
+                    Đăng xuất
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            // Nếu chưa đăng nhập thì vẫn hiển thị Đăng ký và Đăng nhập như cũ
+            <>
+              <Link
+                to="/register"
+                className="
+                  flex items-center bg-red-500 text-white px-4 py-2 rounded-md 
+                  hover:bg-red-600 hover:scale-105 transform transition-transform duration-300
+                "
+              >
+                <FiUserPlus className="mr-2" />
+                Đăng ký
+              </Link>
+              <Link
+                to="/login"
+                className="
+                  text-[#274c4f] hover:text-red-600 hover:scale-105 
+                  transform transition-transform duration-300
+                "
+              >
+                Đăng nhập
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
