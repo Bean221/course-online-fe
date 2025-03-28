@@ -1,23 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000', // URL backend
+  baseURL: "http://localhost:3000", // URL backend
   withCredentials: true,
 });
 
 // Login: POST /auth/login
 export const login = async (credentials) => {
   try {
-    const response = await api.post('/auth/login', credentials);
+    const response = await api.post("/auth/login", credentials);
     // Giả sử API trả về token và thông tin user
     const { token, user } = response.data;
 
     // Lưu token và tên người dùng vào localStorage
-    localStorage.setItem('token', token);
-    localStorage.setItem('userName', user.full_name);
+    localStorage.setItem("token", token);
+    localStorage.setItem("userName", user.full_name);
     return response.data;
   } catch (error) {
-    console.error('Login error:', error.response || error);
+    console.error("Login error:", error.response || error);
     throw error;
   }
 };
@@ -25,10 +25,10 @@ export const login = async (credentials) => {
 // Register: POST /auth/register
 export const register = async (userData) => {
   try {
-    const response = await api.post('/auth/register', userData);
+    const response = await api.post("/auth/register", userData);
     return response.data;
   } catch (error) {
-    console.error('Register error:', error.response || error);
+    console.error("Register error:", error.response || error);
     throw error;
   }
 };
@@ -36,32 +36,40 @@ export const register = async (userData) => {
 // Logout: POST /auth/logout
 export const logout = async () => {
   try {
-    const response = await api.post('/auth/logout');
+    const response = await api.post("/auth/logout");
     return response.data;
   } catch (error) {
-    console.error('Logout error:', error.response || error);
+    console.error("Logout error:", error.response || error);
     throw error;
   }
 };
 
 // Forgot Password: POST /auth/forgot-password
-export const forgotPassword = async (emailData) => {
-  try {
-    const response = await api.post('/auth/forgot-password', emailData);
-    return response.data;
-  } catch (error) {
-    console.error('Forgot password error:', error.response || error);
-    throw error;
-  }
+export const forgotPassword = async (email) => {
+  const response = await api.post("/auth/forgot-password", { email });
+  return response.data;
 };
 
 // Reset Password: POST /auth/reset-password
 export const resetPassword = async (resetData) => {
   try {
-    const response = await api.post('/auth/reset-password', resetData);
+    const response = await api.post("/auth/reset-password", resetData);
     return response.data;
   } catch (error) {
-    console.error('Reset password error:', error.response || error);
+    console.error("Reset password error:", error.response || error);
     throw error;
   }
+};
+
+// Change Password: PUT /auth/change-password
+export const changePassword = async (currentPassword, newPassword) => {
+  const token = localStorage.getItem("token");
+  const response = await api.put(
+    "/auth/change-password",
+    { currentPassword, newPassword },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  return response.data;
+
+
 };
