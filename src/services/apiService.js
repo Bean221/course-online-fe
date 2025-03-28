@@ -51,14 +51,13 @@ export const forgotPassword = async (email) => {
 };
 
 // Reset Password: POST /auth/reset-password
-export const resetPassword = async (resetData) => {
-  try {
-    const response = await api.post("/auth/reset-password", resetData);
-    return response.data;
-  } catch (error) {
-    console.error("Reset password error:", error.response || error);
-    throw error;
-  }
+export const resetPassword = async (token, newPassword) => {
+  // Gửi PUT request với body chứa token và newPassword
+  const response = await api.put("/auth/reset-password", {
+    token,
+    newPassword,
+  });
+  return response.data; // Ví dụ: { message: 'Đổi mật khẩu thành công' }
 };
 
 // Change Password: PUT /auth/change-password
@@ -70,6 +69,4 @@ export const changePassword = async (currentPassword, newPassword) => {
     { headers: { Authorization: `Bearer ${token}` } }
   );
   return response.data;
-
-
 };
