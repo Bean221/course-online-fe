@@ -70,3 +70,27 @@ export const changePassword = async (currentPassword, newPassword) => {
   );
   return response.data;
 };
+export const getUserProfile = async () => {
+  const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi bạn lưu trữ
+  const response = await axios.get("/users/profile", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+// Hàm cập nhật thông tin profile người dùng (không cập nhật email)
+export const updateUserProfile = async (profileData) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.put(
+    "/users/profile",
+    profileData,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};

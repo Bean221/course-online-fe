@@ -1,14 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-function SatPage() {
-  return (
-    <div>
-      <h2 className="text-xl font-bold mb-2">Khóa học SAT</h2>
-      <p className="text-gray-700">
-        Đây là nội dung trang SAT. Giới thiệu lộ trình, phương pháp học tập, ...
-      </p>
-    </div>
-  );
-}
+// layout
+import Header from '../../components/layout/Header'
+import Footer from '../../components/Layout/Footer'
+import Banner from '../../components/Home/Banner'
+import ServicesGroup from '../../components/About/ServicesGroup'
+import CenterSystem from '../../components/About/CenterSystem'
+import RegistrationForm from '../../components/Home/RegistrationForm'
 
-export default SatPage;
+
+// Import form
+
+// Import các section
+export default function StudyAbroad() {
+    return (
+      <>
+        <Banner />
+        <ServicesGroup />
+        <CenterSystem />
+        <RegistrationForm />
+        <Header />
+        <Footer />
+      </>
+    );
+  }

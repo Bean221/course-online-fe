@@ -1,12 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-function Writing() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">IELTS Writing</h1>
-      <p>Nội dung về Writing: Task 1, Task 2, cấu trúc bài viết, ...</p>
-    </div>
-  );
-}
+// layout
+import Header from '../../components/layout/Header'
+import Footer from '../../components/Layout/Footer'
+import Banner from '../../components/Home/Banner'
+import ServicesGroup from '../../components/About/ServicesGroup'
+import CenterSystem from '../../components/About/CenterSystem'
+import RegistrationForm from '../../components/Home/RegistrationForm'
 
-export default Writing;
+
+// Import form
+
+// Import các section
+export default function StudyAbroad() {
+    return (
+      <>
+        <Banner />
+        <ServicesGroup />
+        <CenterSystem />
+        <RegistrationForm />
+        <Header />
+        <Footer />
+      </>
+    );
+  }

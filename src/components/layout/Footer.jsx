@@ -99,7 +99,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/courses/kids-english" className="hover:text-red-600 transition-colors duration-300">
+                <Link to="/courses/kids" className="hover:text-red-600 transition-colors duration-300">
                   Tiếng anh Trẻ em &amp; Thanh thiếu niên
                 </Link>
               </li>

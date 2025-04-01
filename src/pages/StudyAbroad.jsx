@@ -6,7 +6,7 @@ import Footer from '../components/Layout/Footer'
 import Banner from '../components/Home/Banner'
 import ServicesGroup from '../components/About/ServicesGroup'
 import CenterSystem from '../components/About/CenterSystem'
-import RecruitmentForm from '../components/About/RecruitmentForm'
+import RegistrationForm from '../components/Home/RegistrationForm'
 
 
 // Import form
@@ -18,7 +18,7 @@ export default function StudyAbroad() {
         <Banner />
         <ServicesGroup />
         <CenterSystem />
-        <RecruitmentForm />
+        <RegistrationForm />
         <Header />
         <Footer />
       </>

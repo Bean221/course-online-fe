@@ -1,12 +1,26 @@
-import React from 'react';
+import React from 'react'
 
-function ReadingTest() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">Thi Thử IELTS Reading Online</h1>
-      <p>Nội dung thi thử Reading.</p>
-    </div>
-  );
-}
+// layout
+import Header from '../../components/layout/Header'
+import Footer from '../../components/Layout/Footer'
+import Banner from '../../components/Home/Banner'
+import ServicesGroup from '../../components/About/ServicesGroup'
+import CenterSystem from '../../components/About/CenterSystem'
+import RegistrationForm from '../../components/Home/RegistrationForm'
 
-export default ReadingTest;
+
+// Import form
+
+// Import các section
+export default function StudyAbroad() {
+    return (
+      <>
+        <Banner />
+        <ServicesGroup />
+        <CenterSystem />
+        <RegistrationForm />
+        <Header />
+        <Footer />
+      </>
+    );
+  }

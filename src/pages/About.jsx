@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/Layout/Header";
+import Header from '../components/layout/Header'
 import Footer from "../components/Layout/Footer";
 import Banner from "../components/Home/Banner";
 import RecruitmentForm from "../components/About/RecruitmentForm";
