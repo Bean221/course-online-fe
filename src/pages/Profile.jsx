@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/layout/Header";
 import { changePassword } from "../services/apiService";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
+  const navigate = useNavigate();
   // Profile state
   const [profile, setProfile] = useState({
     fullName: "Lê Minh Tuấn",
     email: "hoctot221@gmail.com",
     phone: "0905961293",
     address: "Quy Nhơn-Bình Định",
-    birthday: "22-01-2003",
+    birthday: "2003-01-22", // Adjusted to YYYY-MM-DD for date input
     gender: "Nam",
   });
 
@@ -21,6 +23,7 @@ function ProfilePage() {
     new: "",
     confirm: "",
   });
+
   const [message, setMessage] = useState("");
 
   // Handle profile input changes
@@ -35,11 +38,10 @@ function ProfilePage() {
     setPassword((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Save profile updates (placeholder logic)
+  // Save profile updates
   const handleProfileSave = (e) => {
     e.preventDefault();
     setMessage("Cập nhật thông tin cá nhân thành công");
-    // Add API call to update profile here if available
   };
 
   // Handle password change submission
@@ -61,33 +63,34 @@ function ProfilePage() {
 
   // Logout handler
   const handleLogout = () => {
-    console.log("Đăng xuất");
-    // Add token removal and navigation logic here
-  };
+    if (window.confirm("Bạn có chắc chắn muốn đăng xuất không?"))
+    {localStorage.removeItem("token"); // Xóa token (hoặc sessionStorage nếu dùng)
+    navigate("/"); // Chuyển hướng về đầu tiên
+  }};
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-indigo-50 to-purple-100">
       <Header />
       <div className="mx-auto w-full max-w-6xl flex-1 px-6 py-8 pt-24">
         <div className="flex flex-col gap-8 md:flex-row">
           {/* Sidebar */}
-          <aside className="w-full rounded-lg bg-white p-4 shadow-sm md:w-48">
+          <aside className="w-full rounded-lg bg-white p-4 shadow-lg md:w-48">
             <nav className="space-y-2">
               <Link
-                to="#"
-                className="block rounded px-3 py-2 text-gray-700 transition hover:bg-gray-100"
+                to="/profile"
+                className="block rounded px-3 py-2 text-indigo-700 font-medium transition hover:bg-indigo-100 hover:text-indigo-900"
               >
                 Thông tin cá nhân
               </Link>
               <Link
-                to="#"
-                className="block rounded px-3 py-2 text-gray-700 transition hover:bg-gray-100"
+                to="/history"
+                className="block rounded px-3 py-2 text-indigo-700 font-medium transition hover:bg-indigo-100 hover:text-indigo-900"
               >
                 Lịch sử thi thử
               </Link>
               <button
                 onClick={handleLogout}
-                className="w-full rounded px-3 py-2 text-left text-gray-700 transition hover:bg-gray-100"
+                className="w-full rounded px-3 py-2 text-left text-indigo-700 font-medium transition hover:bg-indigo-100 hover:text-indigo-900"
               >
                 Đăng xuất
               </button>
@@ -96,9 +99,14 @@ function ProfilePage() {
 
           {/* Main Content */}
           <main className="flex-1">
-            <section className="rounded-lg bg-white p-6 shadow-sm">
-              <h2 className="mb-6 text-2xl font-bold text-gray-800">Thông tin cá nhân</h2>
-              <form onSubmit={handleProfileSave} className="grid gap-6 md:grid-cols-2">
+            <section className="rounded-lg bg-white p-6 shadow-lg border-t-4 border-indigo-500">
+              <h2 className="mb-6 text-2xl font-bold text-indigo-800">
+                Thông tin cá nhân
+              </h2>
+              <form
+                onSubmit={handleProfileSave}
+                className="grid gap-6 md:grid-cols-2"
+              >
                 <InputField
                   label="Họ và tên"
                   name="fullName"
@@ -127,11 +135,14 @@ function ProfilePage() {
                 <InputField
                   label="Ngày sinh"
                   name="birthday"
+                  type="date" // Changed to date input
                   value={profile.birthday}
                   onChange={handleProfileChange}
                 />
                 <div>
-                  <label className="mb-1 block font-medium text-gray-700">Giới tính</label>
+                  <label className="mb-1 block font-medium text-indigo-700">
+                    Giới tính
+                  </label>
                   <div className="flex gap-6">
                     <RadioButton
                       label="Nam"
@@ -151,18 +162,21 @@ function ProfilePage() {
                 </div>
                 <button
                   type="submit"
-                  className="mt-4 w-full rounded bg-green-600 px-6 py-2 font-semibold text-white transition hover:bg-green-700 md:col-span-2"
+                  className="mt-4 w-full rounded bg-gradient-to-r from-green-500 to-teal-500 px-6 py-2 font-semibold text-white transition hover:from-green-600 hover:to-teal-600 md:col-span-2"
                 >
                   Lưu thông tin cá nhân
                 </button>
               </form>
 
               {/* Password Change Section */}
-              <div className="mt-8 border-t pt-6">
-                <h3 className="mb-4 text-xl font-semibold text-gray-800">
-                  Đổi mật khẩu (nếu muốn)
+              <div className="mt-8 border-t border-indigo-200 pt-6">
+                <h3 className="mb-4 text-xl font-semibold text-indigo-800">
+                  Đổi mật khẩu
                 </h3>
-                <form onSubmit={handlePasswordSubmit} className="grid gap-6 md:grid-cols-2">
+                <form
+                  onSubmit={handlePasswordSubmit}
+                  className="grid gap-6 md:grid-cols-2"
+                >
                   <InputField
                     label="Mật khẩu hiện tại"
                     name="current"
@@ -187,7 +201,7 @@ function ProfilePage() {
                   />
                   <button
                     type="submit"
-                    className="mt-4 w-full rounded bg-blue-600 px-6 py-2 font-semibold text-white transition hover:bg-blue-700 md:col-span-2"
+                    className="mt-4 w-full rounded bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 font-semibold text-white transition hover:from-blue-600 hover:to-purple-600 md:col-span-2"
                   >
                     Đổi mật khẩu
                   </button>
@@ -196,8 +210,10 @@ function ProfilePage() {
 
               {message && (
                 <p
-                  className={`mt-4 text-center ${
-                    message.includes("thành công") ? "text-green-600" : "text-red-600"
+                  className={`mt-4 text-center font-medium ${
+                    message.includes("thành công")
+                      ? "text-green-600"
+                      : "text-red-600"
                   }`}
                 >
                   {message}
@@ -213,29 +229,36 @@ function ProfilePage() {
 }
 
 // Reusable Input Field Component
-const InputField = ({ label, name, type = "text", value, onChange, className }) => (
+const InputField = ({
+  label,
+  name,
+  type = "text",
+  value,
+  onChange,
+  className,
+}) => (
   <div className={className}>
-    <label className="mb-1 block font-medium text-gray-700">{label}</label>
+    <label className="mb-1 block font-medium text-indigo-700">{label}</label>
     <input
       type={type}
       name={name}
       value={value}
       onChange={onChange}
-      className="w-full rounded border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+      className="w-full rounded border border-indigo-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
     />
   </div>
 );
 
 // Reusable Radio Button Component
 const RadioButton = ({ label, name, value, checked, onChange }) => (
-  <label className="flex items-center gap-2 text-gray-700">
+  <label className="flex items-center gap-2 text-indigo-700">
     <input
       type="radio"
       name={name}
       value={value}
       checked={checked}
       onChange={onChange}
-      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500"
+      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-indigo-300"
     />
     <span>{label}</span>
   </label>

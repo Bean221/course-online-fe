@@ -54,9 +54,9 @@ const Header = () => {
   return (
     <header
       className={`
-        fixed top-0 left-0 w-full z-50 
+        fixed top-0 left-0 w-full z-50
         flex items-center transition-colors duration-300
-        h-16 
+        h-16
         ${isScrolled ? "bg-white shadow" : "bg-transparent shadow-none"}
       `}
     >
@@ -98,10 +98,10 @@ const Header = () => {
             </Link>
             <div
               className="
-                absolute left-0 top-full mt-1 
-                opacity-0 invisible 
-                group-hover:opacity-100 group-hover:visible 
-                transition-all duration-200 
+                absolute left-0 top-full mt-1
+                opacity-0 invisible
+                group-hover:opacity-100 group-hover:visible
+                transition-all duration-200
                 bg-white min-w-[140px] whitespace-nowrap rounded shadow
               "
             >
@@ -110,7 +110,7 @@ const Header = () => {
                   <Link
                     to="/courses/ielts"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -121,7 +121,7 @@ const Header = () => {
                   <Link
                     to="/courses/sat"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -132,7 +132,7 @@ const Header = () => {
                   <Link
                     to="/courses/kids"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -154,10 +154,10 @@ const Header = () => {
             </Link>
             <div
               className="
-                absolute left-0 top-full mt-1 
-                opacity-0 invisible 
-                group-hover:opacity-100 group-hover:visible 
-                transition-all duration-200 
+                absolute left-0 top-full mt-1
+                opacity-0 invisible
+                group-hover:opacity-100 group-hover:visible
+                transition-all duration-200
                 bg-white min-w-[140px] whitespace-nowrap rounded shadow
               "
             >
@@ -166,7 +166,7 @@ const Header = () => {
                   <Link
                     to="/mock-test/speaking"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -177,7 +177,7 @@ const Header = () => {
                   <Link
                     to="/mock-test/writing"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -188,7 +188,7 @@ const Header = () => {
                   <Link
                     to="/mock-test/listening"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -199,7 +199,7 @@ const Header = () => {
                   <Link
                     to="/mock-test/reading"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -210,7 +210,7 @@ const Header = () => {
                   <Link
                     to="/mock-test/RegisterIELTS"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -240,10 +240,10 @@ const Header = () => {
             </Link>
             <div
               className="
-                absolute left-0 top-full mt-1 
-                opacity-0 invisible 
-                group-hover:opacity-100 group-hover:visible 
-                transition-all duration-200 
+                absolute left-0 top-full mt-1
+                opacity-0 invisible
+                group-hover:opacity-100 group-hover:visible
+                transition-all duration-200
                 bg-white min-w-[140px] whitespace-nowrap rounded shadow
               "
             >
@@ -252,7 +252,7 @@ const Header = () => {
                   <Link
                     to="/ielts-knowledge/speaking"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -263,7 +263,7 @@ const Header = () => {
                   <Link
                     to="/ielts-knowledge/writing"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -274,7 +274,7 @@ const Header = () => {
                   <Link
                     to="/ielts-knowledge/listening"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -285,7 +285,7 @@ const Header = () => {
                   <Link
                     to="/ielts-knowledge/reading"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -296,7 +296,7 @@ const Header = () => {
                   <Link
                     to="/ielts-knowledge/sat"
                     className="
-                      block px-4 py-2 text-[#274c4f] hover:text-red-600 
+                      block px-4 py-2 text-[#274c4f] hover:text-red-600
                       hover:bg-gray-100 transition-colors duration-200
                     "
                   >
@@ -315,7 +315,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="flex items-center space-x-2 focus:outline-none"
+                className="flex items-center space-x-2 focus:outline-none cursor-pointer hover:text-red-600"
               >
                 <img
                   src={Avatar}
@@ -356,7 +356,7 @@ const Header = () => {
               <Link
                 to="/register"
                 className="
-                  flex items-center bg-red-500 text-white px-4 py-2 rounded-md 
+                  flex items-center bg-red-500 text-white px-4 py-2 rounded-md
                   hover:bg-red-600 hover:scale-105 transform transition-transform duration-300
                 "
               >
@@ -366,7 +366,7 @@ const Header = () => {
               <Link
                 to="/login"
                 className="
-                  text-[#274c4f] hover:text-red-600 hover:scale-105 
+                  text-[#274c4f] hover:text-red-600 hover:scale-105
                   transform transition-transform duration-300
                 "
               >

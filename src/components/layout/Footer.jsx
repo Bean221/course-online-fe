@@ -79,7 +79,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/community" className="hover:text-red-600 transition-colors duration-300">
-                  The Forum Community
+                  BeanLearn Community
                 </Link>
               </li>
             </ul>

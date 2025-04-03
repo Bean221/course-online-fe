@@ -26,10 +26,13 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import History from "./pages/History";
+
 
 function App() {
   return (
     <Routes>
+      <Route path="/history" element={<History />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />}>
         <Route path="ielts" element={<IeltsPage />} />
