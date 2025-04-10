@@ -27,11 +27,27 @@ import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import History from "./pages/History";
+import ReadingTestDetail from "./pages/TestDetail/ReadingTestDetail";
+import WritingTestDetail from "./pages/TestDetail/WritingTestDetail";
+import SpeakingTestDetail from "./pages/TestDetail/SpeakingTestDetail";
+import ListeningTestDetail from "./pages/TestDetail/ListeningTestDetail";
+import AllTestDetail from "./pages/TestDetail/AllTestDetail";
 
 
 function App() {
   return (
     <Routes>
+      {/* Trang chi tiết bài thi Reading */}
+      <Route path="/test/reading/:year/:month" element={<ReadingTestDetail />} />
+      {/* Trang chi tiết bài thi Writing */}
+      <Route path="/test/writing/:year/:month" element={<WritingTestDetail />} />
+      {/* Trang chi tiết bài thi Speaking */}
+      <Route path="/test/speaking/:year/:month" element={<SpeakingTestDetail />} />
+      {/* Trang chi tiết bài thi Listening */}
+      <Route path="/test/listening/:year/:month" element={<ListeningTestDetail />} />
+      {/* Trang chi tiết tất cả bài thi */}
+      <Route path="/test/all/:year/:month" element={<AllTestDetail />} />
+      {/* Trang chủ */}
       <Route path="/history" element={<History />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />}>
