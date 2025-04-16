@@ -32,19 +32,120 @@ import WritingTestDetail from "./pages/TestDetail/WritingTestDetail";
 import SpeakingTestDetail from "./pages/TestDetail/SpeakingTestDetail";
 import ListeningTestDetail from "./pages/TestDetail/ListeningTestDetail";
 import AllTestDetail from "./pages/TestDetail/AllTestDetail";
-
+import ManagerDashboard from "./pages/admin/ManagerDashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ProtectedRoute from "./pages/admin/ProtectedRoute";
+// Import 7 pages
+import ThiSinhDKPage from "./pages/menuadmin/ThiSinhDKPage";
+import TuVanDKPage from "./pages/menuadmin/TuVanDKPage";
+import QuanLyThiThuPage from "./pages/menuadmin/QuanLyThiThuPage";
+import HoSoUngTuyenPage from "./pages/menuadmin/HoSoUngTuyenPage";
+import NhanSuBeanLearnPage from "./pages/menuadmin/NhanSuBeanLearnPage";
+import QuanLyDoanhThuPage from "./pages/menuadmin/QuanLyDoanhThuPage";
+import QuanLyUserPage from "./pages/menuadmin/QuanLyUserPage";
 
 function App() {
   return (
     <Routes>
+      <Route
+        path="/quan-ly/thi-sinh"
+        element={
+          <ProtectedRoute allowedRoles={["admin", "manager"]}>
+            {/* Chỉ admin và manager mới vào được */}
+            <ThiSinhDKPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quan-ly/tu-van"
+        element={
+          <ProtectedRoute allowedRoles={["manager", "admin"]}>
+            <TuVanDKPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/quan-ly/thi-thu"
+        element={
+          <ProtectedRoute allowedRoles={["admin", "manager"]}>
+            <QuanLyThiThuPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/ho-so-ung-tuyen"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <HoSoUngTuyenPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/nhan-su"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <NhanSuBeanLearnPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/doanh-thu"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <QuanLyDoanhThuPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/nguoi-dung"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <QuanLyUserPage />
+          </ProtectedRoute>
+        }
+      />
+      {/* Route chỉ admin mới vào được */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Route chỉ manager mới vào được */}
+      <Route
+        path="/manager"
+        element={
+          <ProtectedRoute allowedRoles={["manager", "admin"]}>
+            <ManagerDashboard />
+          </ProtectedRoute>
+        }
+      />
+      {/* Trang quản lý */}
+
+      {/* Trang quản lý đề thi */}
       {/* Trang chi tiết bài thi Reading */}
-      <Route path="/test/reading/:year/:month" element={<ReadingTestDetail />} />
+      <Route
+        path="/test/reading/:year/:month"
+        element={<ReadingTestDetail />}
+      />
       {/* Trang chi tiết bài thi Writing */}
-      <Route path="/test/writing/:year/:month" element={<WritingTestDetail />} />
+      <Route
+        path="/test/writing/:year/:month"
+        element={<WritingTestDetail />}
+      />
       {/* Trang chi tiết bài thi Speaking */}
-      <Route path="/test/speaking/:year/:month" element={<SpeakingTestDetail />} />
+      <Route
+        path="/test/speaking/:year/:month"
+        element={<SpeakingTestDetail />}
+      />
       {/* Trang chi tiết bài thi Listening */}
-      <Route path="/test/listening/:year/:month" element={<ListeningTestDetail />} />
+      <Route
+        path="/test/listening/:year/:month"
+        element={<ListeningTestDetail />}
+      />
       {/* Trang chi tiết tất cả bài thi */}
       <Route path="/test/all/:year/:month" element={<AllTestDetail />} />
       {/* Trang chủ */}

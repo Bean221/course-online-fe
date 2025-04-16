@@ -10,35 +10,44 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // State hiển thị menu dropdown cho user
   const [menuOpen, setMenuOpen] = useState(false);
-  const [userName, setUserName] = useState(""); // Lưu tên người dùng
+  // Lưu tên người dùng
+  const [userName, setUserName] = useState("");
+  // Lưu role: "student", "manager", hoặc "admin"
+  const [userRole, setUserRole] = useState("student");
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Xử lý hiệu ứng scroll
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Kiểm tra token trong localStorage khi component mount
+  // Kiểm tra token, userName, userRole trong localStorage khi component mount
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedName = localStorage.getItem("userName");
+    const storedRole = localStorage.getItem("role"); // Lưu "student" | "manager" | "admin"
+    console.log("token:", token);
+    console.log("userName:", storedName);
+    console.log("raw role:", storedRole);
+
     if (token) {
       setIsLoggedIn(true);
-      if (storedName) {
-        setUserName(storedName);
+      if (storedName) setUserName(storedName);
+      if (storedRole) {
+        const lowerRole = storedRole.toLowerCase();
+        setUserRole(lowerRole);
+        console.log("normalized role:", lowerRole);
       }
     } else {
       setIsLoggedIn(false);
       setUserName("");
+      setUserRole("student");
     }
   }, []);
 
@@ -46,8 +55,11 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");
+    localStorage.removeItem("role");
     setIsLoggedIn(false);
     setMenuOpen(false);
+    setUserName("");
+    setUserRole("student");
     navigate("/");
   };
 
@@ -65,10 +77,7 @@ const Header = () => {
         <Link
           to="/"
           className="flex items-center"
-          onClick={() => {
-            // Điều hướng về trang chủ
-            window.location.href = "/";
-          }}
+          onClick={() => (window.location.href = "/")}
         >
           <img
             src={logoImg}
@@ -308,10 +317,9 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* Phần dưới là code của bạn hiện đang hiển thị Đăng ký / Đăng nhập */}
+        {/* Đăng ký / Đăng nhập / Menu User */}
         <div className="flex items-center space-x-4">
           {isLoggedIn ? (
-            // Nếu đã đăng nhập, thay thế bằng avatar và menu của user
             <div className="relative">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -341,6 +349,24 @@ const Header = () => {
                   >
                     Lịch sử thi thử
                   </Link>
+                  {/* Quản lý hệ thống - chỉ hiện nếu là admin hoặc manager */}
+                  {userRole === "admin" && (
+                    <Link
+                      to="/admin"
+                      className="block px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
+                      >
+                      Quản trị admin
+                    </Link>
+                  )}
+
+                  {userRole === "manager" && (
+                    <Link
+                      to="/manager"
+                      className="block px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
+                      >
+                      Quản lý hệ thống
+                    </Link>
+                  )}
                   <button
                     onClick={handleLogout}
                     className="w-full text-left px-4 py-2 text-[#274c4f] hover:text-red-600 hover:bg-gray-100 transition-colors duration-200"
@@ -351,7 +377,6 @@ const Header = () => {
               )}
             </div>
           ) : (
-            // Nếu chưa đăng nhập thì vẫn hiển thị Đăng ký và Đăng nhập như cũ
             <>
               <Link
                 to="/register"
