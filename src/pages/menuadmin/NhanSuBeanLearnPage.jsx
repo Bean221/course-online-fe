@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AdminSidebar from "../../components/layout/AdminSidebar";
+import { FaUserTie, FaEdit, FaTrash, FaCalendarAlt, FaCheckCircle } from "react-icons/fa";
 
 const NhanSuBeanLearnPage = () => {
   const [staffList] = useState([
@@ -19,44 +20,89 @@ const NhanSuBeanLearnPage = () => {
     },
   ]);
 
+  const userRole = localStorage.getItem("userRole") || "admin";
+  const isCollapsed = localStorage.getItem("sidebarCollapsed") === "true";
+
   return (
-    <div className="flex">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <AdminSidebar userRole="admin" />
+      <AdminSidebar userRole={userRole} />
 
       {/* Nội dung trang */}
-      <div className="ml-64 p-4 w-full">
-        <h1 className="text-2xl font-semibold mb-4">
-          Quản lý nhân sự BeanLearn
-        </h1>
-        <table className="w-full bg-white shadow rounded">
-          <thead className="bg-blue-100">
-            <tr>
-              <th className="p-2 text-left">Họ tên</th>
-              <th className="p-2 text-left">Vị trí</th>
-              <th className="p-2 text-left">Ngày vào</th>
-              <th className="p-2 text-left">Trạng thái</th>
-              <th className="p-2 text-left">Tác vụ</th>
-            </tr>
-          </thead>
-          <tbody>
-            {staffList.map((staff) => (
-              <tr key={staff.id} className="border-b">
-                <td className="p-2">{staff.name}</td>
-                <td className="p-2">{staff.role}</td>
-                <td className="p-2">{staff.startDate}</td>
-                <td className="p-2">{staff.status}</td>
-                <td className="p-2">
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2">
-                    Sửa
-                  </button>
-                  <button className="text-red-600">Xóa</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <main 
+        className={`${
+          isCollapsed ? "ml-20" : "ml-64"
+        } flex-1 transition-all duration-300 p-6`}
+      >
+        <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold text-gray-800 flex items-center">
+              <FaUserTie className="mr-3 text-green-600" />
+              Quản lý nhân sự BeanLearn
+            </h1>
+            
+            <button className="bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg px-4 py-2 text-sm transition-colors flex items-center">
+              <span className="mr-1">+</span> Thêm nhân viên mới
+            </button>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden">
+              <thead className="bg-gradient-to-r from-green-50 to-teal-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Họ tên
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Vị trí
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Ngày vào
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Trạng thái
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
+                    Tác vụ
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {staffList.map((staff) => (
+                  <tr key={staff.id} className="hover:bg-green-50 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                      {staff.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        {staff.role}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
+                      <FaCalendarAlt className="mr-2 text-gray-400" /> {staff.startDate}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      <span className="flex items-center text-green-600">
+                        <FaCheckCircle className="mr-1" /> {staff.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <div className="flex space-x-3">
+                        <button className="bg-blue-100 text-blue-600 hover:bg-blue-200 rounded-lg px-3 py-1 transition-colors flex items-center">
+                          <FaEdit className="mr-1" /> Sửa
+                        </button>
+                        <button className="bg-red-100 text-red-600 hover:bg-red-200 rounded-lg px-3 py-1 transition-colors flex items-center">
+                          <FaTrash className="mr-1" /> Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

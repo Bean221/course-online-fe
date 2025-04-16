@@ -13,30 +13,40 @@ import {
 } from "react-icons/fa";
 
 const AdminSidebar = ({ userRole = "manager" }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [role, setRole] = useState(userRole);
-  
+  // Get initial collapse state from localStorage or default to false
+  const savedCollapse = localStorage.getItem("sidebarCollapsed") === "true";
+  const [isCollapsed, setIsCollapsed] = useState(savedCollapse);
+
+  // Get role from props or localStorage with prop taking precedence
+  const initialRole = userRole || localStorage.getItem("userRole") || "manager";
+  const [role, setRole] = useState(initialRole);
+
+  // Effect to update role when prop changes
   useEffect(() => {
-    // Đảm bảo prop userRole được cập nhật
-    console.log("Sidebar received role:", userRole);
-    setRole(userRole);
-    
-    // Backup: nếu prop không có, lấy từ localStorage
-    if (!userRole) {
-      const storedRole = localStorage.getItem("userRole");
-      console.log("Using role from localStorage:", storedRole);
-      setRole(storedRole);
+    if (userRole) {
+      setRole(userRole);
+      localStorage.setItem("userRole", userRole); // Store in localStorage for persistence
     }
   }, [userRole]);
-  
+
+  // Effect to save collapse state to localStorage
+  useEffect(() => {
+    localStorage.setItem("sidebarCollapsed", isCollapsed);
+    window.dispatchEvent(new Event("storage"));
+  }, [isCollapsed]);
+
   const isAdmin = role === "admin";
-  console.log("Is admin:", isAdmin); // Kiểm tra giá trị isAdmin
-  
+
+  // Toggle sidebar collapse
+  const toggleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
+
   return (
     <aside
       className={`fixed h-screen ${
         isCollapsed ? "w-20" : "w-64"
-      } bg-slate-900 border-r border-slate-800 transition-all duration-300 flex flex-col group`}
+      } bg-slate-900 border-r border-slate-800 transition-all duration-300 flex flex-col group rounded-r-lg`}
     >
       {/* Header */}
       <div className="p-5 pb-4 border-b border-slate-800">
@@ -47,10 +57,17 @@ const AdminSidebar = ({ userRole = "manager" }) => {
             </div>
           </div>
         ) : (
-          <div>
-            <h1 className="text-xl font-semibold text-slate-100">BEANLEARN</h1>
-            <p className="text-xs mt-1 text-slate-500">Quản trị hệ thống</p>
-          </div>
+          <NavLink
+            to={role === "admin" ? "/admin" : "/manager"}
+            className="block hover:text-blue-300 transition-colors"
+          >
+            <div>
+              <h1 className="text-xl font-semibold text-slate-100">
+                BEANLEARN
+              </h1>
+              <p className="text-xs mt-1 text-slate-500">Quản trị hệ thống</p>
+            </div>
+          </NavLink>
         )}
       </div>
 
@@ -107,7 +124,7 @@ const AdminSidebar = ({ userRole = "manager" }) => {
           />
           {!isCollapsed && "Quản lý thi thử"}
         </NavLink>
-        
+
         {/* 4 mục chỉ dành cho admin */}
         {isAdmin && (
           <>
@@ -155,10 +172,13 @@ const AdminSidebar = ({ userRole = "manager" }) => {
                     : "text-slate-400 hover:bg-blue-500/5 hover:text-blue-200"
                 } cursor-pointer`}
             >
-              <FaMoneyBillWave className={isCollapsed ? "" : "mr-3"} size={20} />
+              <FaMoneyBillWave
+                className={isCollapsed ? "" : "mr-3"}
+                size={20}
+              />
               {!isCollapsed && "Quản lý doanh thu"}
             </NavLink>
-            
+
             <NavLink
               to="/admin/nguoi-dung"
               className={({ isActive }) => `
@@ -181,7 +201,7 @@ const AdminSidebar = ({ userRole = "manager" }) => {
       {/* Collapse Button */}
       <div className="mt-auto p-3 border-t border-slate-800">
         <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={toggleCollapse}
           className="w-full flex items-center justify-center p-2 rounded-md hover:bg-slate-800/30 transition-colors cursor-pointer"
         >
           {isCollapsed ? (
