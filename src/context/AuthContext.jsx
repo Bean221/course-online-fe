@@ -4,6 +4,7 @@ import React, { createContext, useState, useContext } from 'react';
 const AuthContext = createContext(null);
 
 // Custom hook để dùng AuthContext
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   return useContext(AuthContext);
 }

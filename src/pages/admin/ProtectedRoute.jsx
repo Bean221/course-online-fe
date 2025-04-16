@@ -5,7 +5,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
   if (!role || !allowedRoles.includes(role)) {
     // Nếu không đúng quyền → chuyển hướng
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return children;
