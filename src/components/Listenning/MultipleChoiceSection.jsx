@@ -1,10 +1,10 @@
 // src/components/sections/MultipleChoiceSection.jsx
-import HighlightedText from '../../components/sections/HighlightedText';
+import HighlightedText from './HighlightedText';
 
 const MultipleChoiceSection = ({ startQuestion, endQuestion, answers, onAnswerChange }) => {
   const handleOptionSelect = (questionNum, value) => {
     onAnswerChange(questionNum, value);
-  };
+  }; // câu 11 đến 15
   
   // Section 2 Questions 11-15
   const questions = [

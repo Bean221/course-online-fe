@@ -1,10 +1,10 @@
 // src/components/sections/RefereeSection.jsx
-import HighlightedText from '../../components/sections/HighlightedText';
+import HighlightedText from './HighlightedText';
 
 const RefereeSection = ({ answers, onAnswerChange }) => {
   const handleInputChange = (questionNum, value) => {
     onAnswerChange(questionNum, value);
-  };
+  }; // câu 6 đến 10
 
   return (
     <div className="mb-8">

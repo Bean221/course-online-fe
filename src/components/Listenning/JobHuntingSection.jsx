@@ -1,11 +1,11 @@
 // src/components/sections/JobHuntingSection.jsx
 // import { useEffect, useState } from 'react';
-import HighlightedText from '../../components/sections/HighlightedText';
+import HighlightedText from './HighlightedText';
 
 const JobHuntingSection = ({ answers, onAnswerChange }) => {
   const handleInputChange = (questionNum, value) => {
     onAnswerChange(questionNum, value);
-  };
+  }; // câu 1 đến 5
   
   return (
     <div className="mb-8">

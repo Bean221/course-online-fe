@@ -1,10 +1,11 @@
 // src/components/sections/SurveyResearchSection.jsx
-import HighlightedText from '../../components/sections/HighlightedText';
+import HighlightedText from './HighlightedText';
 
 const SurveyResearchSection = ({ answers, onAnswerChange }) => {
   const handleInputChange = (questionNum, value) => {
     onAnswerChange(questionNum, value);
-  };
+  }; // câu 31 đến 40 
+
   
   return (
     <div className="mb-8">

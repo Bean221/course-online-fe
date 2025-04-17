@@ -1,10 +1,11 @@
 // src/components/sections/WillowsSection.jsx (continued)
-import HighlightedText from '../../components/sections/HighlightedText';
+import HighlightedText from './HighlightedText';
 
 const WillowsSection = ({ answers, onAnswerChange }) => {
   const handleOptionSelect = (questionNum, value) => {
     onAnswerChange(questionNum, value);
-  };
+  }; // câu 21 đến 26
+  // Câu hỏi 21 đến 26
   
   const questions = [
     {
