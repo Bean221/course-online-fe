@@ -1048,7 +1048,7 @@ const StatCard = ({ title, value, icon: Icon, color }) => {
     <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
       <div className="flex items-center">
         <div className={`p-3 rounded-lg ${colorClasses}`}>
-          <Icon className="text-xl" />
+          {Icon && <Icon className="text-xl" />}
         </div>
         <div className="ml-4">
           <h4 className="text-sm font-medium text-gray-500">{title}</h4>

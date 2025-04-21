@@ -160,6 +160,23 @@ const AdminSidebar = ({ userRole = "manager" }) => {
               {!isCollapsed && "Nhân sự BeanLearn"}
             </NavLink>
 
+            
+
+            <NavLink
+              to="/admin/nguoi-dung"
+              className={({ isActive }) => `
+                flex items-center ${
+                  isCollapsed ? "justify-center" : "px-4"
+                } py-3 rounded-lg transition-colors
+                ${
+                  isActive
+                    ? "bg-blue-500/10 border-l-4 border-blue-400 text-blue-300"
+                    : "text-slate-400 hover:bg-blue-500/5 hover:text-blue-200"
+                } cursor-pointer`}
+            >
+              <FaUsers className={isCollapsed ? "" : "mr-3"} size={20} />
+              {!isCollapsed && "Quản lý người dùng"}
+            </NavLink>
             <NavLink
               to="/admin/doanh-thu"
               className={({ isActive }) => `
@@ -177,22 +194,6 @@ const AdminSidebar = ({ userRole = "manager" }) => {
                 size={20}
               />
               {!isCollapsed && "Quản lý doanh thu"}
-            </NavLink>
-
-            <NavLink
-              to="/admin/nguoi-dung"
-              className={({ isActive }) => `
-                flex items-center ${
-                  isCollapsed ? "justify-center" : "px-4"
-                } py-3 rounded-lg transition-colors
-                ${
-                  isActive
-                    ? "bg-blue-500/10 border-l-4 border-blue-400 text-blue-300"
-                    : "text-slate-400 hover:bg-blue-500/5 hover:text-blue-200"
-                } cursor-pointer`}
-            >
-              <FaUsers className={isCollapsed ? "" : "mr-3"} size={20} />
-              {!isCollapsed && "Quản lý người dùng"}
             </NavLink>
           </>
         )}

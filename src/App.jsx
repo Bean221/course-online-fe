@@ -32,6 +32,7 @@ import WritingTestDetail from "./pages/TestDetail/WritingTestDetail";
 import SpeakingTestDetail from "./pages/TestDetail/SpeakingTestDetail";
 import ListeningTestDetail from "./pages/TestDetail/ListeningTestDetail";
 import AllTestDetail from "./pages/TestDetail/AllTestDetail";
+import TestResults from "./pages/TestResult/ResultReading";
 // Import các trang admin
 import ManagerDashboard from "./pages/admin/ManagerDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -126,7 +127,32 @@ function App() {
       />
       {/* Trang quản lý */}
 
-      {/* Trang quản lý đề thi */}
+      {/* Trang kết qủa đề thi thử */}
+      {/* Trang kết quả bài thi Reading */}
+      <Route
+        path="/test/reading/:year/:month/results"
+        element={<TestResults testType="reading" />}
+      />
+      {/* Trang kết quả bài thi Writing */}
+      <Route
+        path="/test/writing/:year/:month/results"
+        element={<TestResults testType="writing" />}
+      />
+      {/* Trang kết quả bài thi Speaking */}
+      <Route
+        path="/test/speaking/:year/:month/results"
+        element={<TestResults testType="speaking" />}
+      />
+      {/* Trang kết quả bài thi Listening */}
+      <Route
+        path="/mock-test/listening/results"
+        element={<TestResults testType="listening" />}
+      />
+      {/* Trang kết quả tất cả bài thi */}
+      <Route
+        path="/test/all/:year/:month/results"
+        element={<TestResults testType="all" />}
+      />
       {/* Trang chi tiết bài thi Reading */}
       <Route
         path="/test/reading/:year/:month"

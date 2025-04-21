@@ -11,7 +11,7 @@ import WillowsSection from "../../components/Listenning/WillowsSection";
 import NewSystemSection from "../../components/Listenning/NewSystemSection";
 import SurveyResearchSection from "../../components/Listenning/SurveyResearchSection";
 import Audio from "../../audio/Listening_Test1.mp3";
-import Footer from "../../components/layout/Footer";
+import Footer from "../../components/Layout/Footer";
 
 const ListeningTest = () => {
   const [answers, setAnswers] = useState(Array(40).fill(""));

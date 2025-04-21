@@ -1,4 +1,3 @@
-// src/components/QuestionPalette.jsx
 import { useMemo } from 'react';
 
 const QuestionPalette = ({ completedQuestions, currentSection, onSectionChange, onQuestionClick, onSubmit }) => {
@@ -8,11 +7,30 @@ const QuestionPalette = ({ completedQuestions, currentSection, onSectionChange, 
     { id: 3, title: "Part 3", questions: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30] },
     { id: 4, title: "Part 4", questions: [31, 32, 33, 34, 35, 36, 37, 38, 39, 40] }
   ], []);
-  // Memoize sections to avoid recalculating on every render
+
+  // Tính tổng số câu hỏi
+  const totalQuestions = sections.reduce((total, section) => total + section.questions.length, 0);
+
+  // Tính số câu hỏi đã hoàn thành
+  const completedCount = completedQuestions.filter(Boolean).length;
+
+  // Tính phần trăm hoàn thành
+  const completionPercentage = Math.round((completedCount / totalQuestions) * 100);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-      <h3 className="font-semibold text-xl mb-5 text-center text-gray-800">Question Palette</h3>
+      <h3 className="font-semibold text-xl mb-2 text-center text-gray-800">Question Palette</h3>
+      
+      {/* Hiển thị phần trăm tiến độ */}
+      <div className="text-center mb-4">
+        <p className="text-sm text-gray-600">Progress: {completionPercentage}%</p>
+        <div className="w-full bg-gray-200 rounded-full h-2 mt-1">
+          <div
+            className="bg-blue-600 h-2 rounded-full"
+            style={{ width: `${completionPercentage}%` }}
+          ></div>
+        </div>
+      </div>
 
       {sections.map((section) => (
         <div key={section.id} className="mb-6">
@@ -45,7 +63,7 @@ const QuestionPalette = ({ completedQuestions, currentSection, onSectionChange, 
         <button
           className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition duration-200 ease-in-out shadow-md cursor-pointer"
           aria-label="Submit test"
-          onClick={onSubmit} // Call the onSubmit function prop
+          onClick={onSubmit}
         >
           Submit Test
         </button>
