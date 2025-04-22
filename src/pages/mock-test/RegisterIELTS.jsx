@@ -6,8 +6,8 @@ import QR from "../../assets/QR.png";
 
 const RegistrationForm = ({ examType, price }) => {
   const [showQR, setShowQR] = useState(false);
-  const [selectedLocation, ] = useState("");
-  const [selectedFormat, ] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedFormat, setSelectedFormat] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [formData, setFormData] = useState({
     fullName: "",
@@ -184,8 +184,75 @@ const RegistrationForm = ({ examType, price }) => {
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 px-3 py-2"
               />
             </div>
-            {/* Địa điểm thi */}
             
+            {/* Thêm phần chọn địa điểm thi */}
+            <div className="md:col-span-2">
+              <label
+                htmlFor="location"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Chọn địa điểm thi
+              </label>
+              <select
+                id="location"
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 px-3 py-2"
+                value={selectedLocation}
+                onChange={(e) => setSelectedLocation(e.target.value)}
+                required
+              >
+                <option value="">Vui lòng chọn địa điểm</option>
+                <option value="01 Trần Phú, P. Lý Thường Kiệt, TP. Quy Nhơn">
+                  01 Trần Phú, P. Lý Thường Kiệt, TP. Quy Nhơn
+                </option>
+                <option value="02 Phan Bội Châu, P. Trần Hưng Đạo, TP. Quy Nhơn">
+                  02 Phan Bội Châu, P. Trần Hưng Đạo, TP. Quy Nhơn
+                </option>
+                <option value="03 Võ Thị Sáu, P. Nguyễn Văn Cừ, TP. Quy Nhơn">
+                  03 Võ Thị Sáu, P. Nguyễn Văn Cừ, TP. Quy Nhơn
+                </option>
+                <option value="04 Ngô Mây, P. Quang Trung, TP. Quy Nhơn">
+                  04 Ngô Mây, P. Quang Trung, TP. Quy Nhơn
+                </option>
+                <option value="05 Lê Lợi, P. Lê Lợi, TP. Quy Nhơn">
+                  05 Lê Lợi, P. Lê Lợi, TP. Quy Nhơn
+                </option>
+              </select>
+            </div>
+
+            {/* Thêm phần chọn hình thức thi */}
+            <div className="md:col-span-2 mt-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Chọn hình thức thi
+              </label>
+              <div className="mt-1 flex gap-8">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="format"
+                    value="paper"
+                    checked={selectedFormat === "paper"}
+                    onChange={() => setSelectedFormat("paper")}
+                    required
+                    className="form-radio text-indigo-600 h-4 w-4"
+                  />
+                  <span className="ml-2 text-gray-700">IELTS trên giấy</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="format"
+                    value="computer"
+                    checked={selectedFormat === "computer"}
+                    onChange={() => setSelectedFormat("computer")}
+                    required
+                    className="form-radio text-indigo-600 h-4 w-4"
+                  />
+                  <span className="ml-2 text-gray-700">
+                    IELTS trên máy tính
+                  </span>
+                </label>
+              </div>
+            </div>
 
             {/* Lịch chọn ngày thi */}
             <div className="md:col-span-2 mt-4">

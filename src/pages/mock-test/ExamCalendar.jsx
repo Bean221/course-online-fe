@@ -16,8 +16,6 @@ const generateDateString = (year, month, day) => {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 };
 
-// -------------------- PHẦN QUAN TRỌNG: TẠO 10 TRƯỜNG HỢP --------------------
-
 // Hàm xác định pattern dựa trên cặp (location, format)
 function getPatternIndex(location, format) {
   // Bạn có thể thay thế string so sánh bằng ID, map,... tuỳ ý
@@ -58,8 +56,8 @@ function getPatternIndex(location, format) {
   return 0;
 }
 
-// Ví dụ 10 pattern “vui vẻ” (bạn thay đổi tuỳ ý)
-// Trả về mảng dayString “available” và mảng dayString “full”
+// Ví dụ 10 pattern "vui vẻ" (bạn thay đổi tuỳ ý)
+// Trả về mảng dayString "available" và mảng dayString "full"
 function generateDatesByPattern(patternIndex, year, month) {
   const totalDays = daysInMonth(month, year);
   const available = [];
@@ -324,91 +322,4 @@ const ExamCalendar = ({ selectedLocation, selectedFormat, onDateSelect }) => {
   );
 };
 
-// -------------------- DEMO SỬ DỤNG --------------------
-const ExampleUsage = () => {
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedFormat, setSelectedFormat] = useState("");
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  const handleDateSelect = (date) => {
-    setSelectedDate(date);
-    alert(`Ngày đã chọn: ${date}`);
-  };
-
-  return (
-    <div>
-      <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
-        Chọn địa điểm:
-      </label>
-      <select
-        id="location"
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-        value={selectedLocation}
-        onChange={(e) => setSelectedLocation(e.target.value)}
-      >
-        <option value="">Vui lòng chọn địa điểm</option>
-        <option value="01 Trần Phú, P. Lý Thường Kiệt, TP. Quy Nhơn">
-          01 Trần Phú, P. Lý Thường Kiệt, TP. Quy Nhơn
-        </option>
-        <option value="02 Phan Bội Châu, P. Trần Hưng Đạo, TP. Quy Nhơn">
-          02 Phan Bội Châu, P. Trần Hưng Đạo, TP. Quy Nhơn
-        </option>
-        <option value="03 Võ Thị Sáu, P. Nguyễn Văn Cừ, TP. Quy Nhơn">
-          03 Võ Thị Sáu, P. Nguyễn Văn Cừ, TP. Quy Nhơn
-        </option>
-        <option value="04 Ngô Mây, P. Quang Trung, TP. Quy Nhơn">
-          04 Ngô Mây, P. Quang Trung, TP. Quy Nhơn
-        </option>
-        <option value="05 Lê Lợi, P. Lê Lợi, TP. Quy Nhơn">
-          05 Lê Lợi, P. Lê Lợi, TP. Quy Nhơn
-        </option>
-      </select>
-
-      <label className="block text-gray-700 text-sm font-bold mb-2">
-        Chọn hình thức thi:
-      </label>
-      <div className="mb-4">
-        <label className="inline-flex items-center mr-4">
-          <input
-            type="radio"
-            name="format"
-            value="paper"
-            required
-            checked={selectedFormat === "paper"}
-            onChange={() => setSelectedFormat("paper")}
-            className="form-radio text-indigo-600 h-4 w-4"
-          />
-          <span className="ml-2 text-gray-700">IELTS trên giấy</span>
-        </label>
-        <label className="inline-flex items-center">
-          <input
-            type="radio"
-            name="format"
-            value="computer"
-            required
-            checked={selectedFormat === "computer"}
-            onChange={() => setSelectedFormat("computer")}
-            className="form-radio text-indigo-600 h-4 w-4"
-          />
-          <span className="ml-2 text-gray-700">
-            IELTS trên máy tính tại trung tâm thi
-          </span>
-        </label>
-      </div>
-
-      <ExamCalendar
-        selectedLocation={selectedLocation}
-        selectedFormat={selectedFormat}
-        onDateSelect={handleDateSelect}
-      />
-
-      {selectedDate && (
-        <p className="mt-4 text-green-500 font-semibold">
-          Ngày đã chọn: {selectedDate}
-        </p>
-      )}
-    </div>
-  );
-};
-
-export default ExampleUsage;
+export default ExamCalendar;
