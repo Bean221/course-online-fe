@@ -393,5 +393,5 @@ const ExamRegistration = () => {
     </div>
   );
 };
-
+  
 export default ExamRegistration;
